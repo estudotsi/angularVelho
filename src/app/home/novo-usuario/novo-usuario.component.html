@@ -1,0 +1,32 @@
+<h4 class="text-center">Registre-se</h4>
+
+<form class="form mt-4" action="" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
+
+    <div class="form-group mb-2">
+        <input type="text" placeholder="email" formControlName="email" class="form-control">
+        <app-mensagem *ngIf="novoUsuarioForm.controls['email'].errors?.['required'] && (novoUsuarioForm.controls['email']?.touched || novoUsuarioForm.controls['email']?.dirty)" mensagem="Email obrigatório"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.controls['email'].errors?.['email'] && (novoUsuarioForm.controls['email']?.touched || novoUsuarioForm.controls['email']?.dirty)" mensagem="Formato Incorreto"></app-mensagem>
+    </div>
+    <div class="form-group mb-2">
+        <input type="text" placeholder="nome" formControlName="fullName" class="form-control">
+        <app-mensagem *ngIf="novoUsuarioForm.controls['fullName'].errors?.['minLength'] && (novoUsuarioForm.controls['fullName']?.touched || novoUsuarioForm.controls['fullName']?.dirty)" mensagem="Nome obrigatório"></app-mensagem>
+    </div>
+    <div class="form-group mb-2">
+        <input type="text" placeholder="username" formControlName="userName" class="form-control">
+        <app-mensagem *ngIf="novoUsuarioForm.controls['userName'].errors?.['minusculo'] && (novoUsuarioForm.controls['userName']?.touched || novoUsuarioForm.controls['userName']?.dirty)" mensagem="só minusculas"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.controls['userName'].errors?.['usuarioExistente'] && (novoUsuarioForm.controls['userName']?.touched || novoUsuarioForm.controls['userName']?.dirty)" mensagem="Usuário já existe"></app-mensagem>
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="senha" formControlName="password" class="form-control">
+        <app-mensagem *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']" mensagem="Senha deve ser diferente de usuário"></app-mensagem>
+    </div>
+
+    <button class="btn btn-primary btn-block mt-2">Cadastro</button>
+
+</form>
+
+<p>Já é um usuário
+    <a [routerLink]="['']">Entre</a>
+</p>
+
+senhaIgualUsuario
